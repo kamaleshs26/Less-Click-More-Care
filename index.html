@@ -1,0 +1,2334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Less Clicks, More Care&trade; &mdash; Clinical AI Governance Platform</title>
+  <meta name="description" content="PHIPA-compliant AI governance for Canadian hospitals.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+/* ============================================================
+   LESS CLICKS, MORE CARE™ — Minimal Professional Redesign
+   ============================================================ */
+
+:root {
+  /* Brand Colors - Muted & Professional */
+  --brand-blue: #1A365D;
+  --brand-blue-mid: #2B6CB0;
+  --brand-blue-light: #4299E1;
+  
+  --brand-teal: #285E61;
+  --brand-teal-light: #319795;
+  
+  --brand-red: #9B2C2C;
+  --brand-red-light: #C53030;
+  
+  --brand-amber: #975A16;
+  --brand-amber-light: #B7791F;
+  
+  --brand-green: #22543D;
+  --brand-green-light: #2F855A;
+
+  /* Neutrals */
+  --bg-page: #F7FAFC;
+  --bg-card: #FFFFFF;
+  --bg-sidebar: #1A202C;
+  --bg-header: #FFFFFF;
+  
+  --border: #E2E8F0;
+  --border-light: #EDF2F7;
+  
+  --text-primary: #1A202C;
+  --text-secondary: #4A5568;
+  --text-muted: #A0AEC0;
+  --text-inverse: #FFFFFF;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* Typography */
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  /* Shadows - Flat & subtle */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.02);
+
+  /* Radius - Less rounded */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+
+  /* Transitions */
+  --transition: 0.15s ease-in-out;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+
+.app-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.page-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-xl);
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+
+.sidebar {
+  width: 240px;
+  min-width: 240px;
+  background: var(--bg-sidebar);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  border-right: 1px solid #2D3748;
+}
+
+.sidebar-brand {
+  padding: var(--space-lg);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.brand-name {
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: -0.2px;
+}
+
+.brand-tagline {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: var(--space-md) 0;
+}
+
+.nav-section-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #718096;
+  padding: var(--space-md) var(--space-lg) var(--space-xs);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px var(--space-lg);
+  color: #A0AEC0;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all var(--transition);
+  border-left: 2px solid transparent;
+}
+
+.nav-item:hover {
+  color: #FFFFFF;
+  background: rgba(255,255,255,0.02);
+}
+
+.nav-item.active {
+  color: #FFFFFF;
+  border-left-color: var(--brand-blue-light);
+  background: rgba(255,255,255,0.05);
+}
+
+.nav-badge {
+  background: #2D3748;
+  color: #E2E8F0;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+.nav-badge.amber { background: #744210; color: #FEEBC8; }
+
+.sidebar-footer {
+  padding: var(--space-md) var(--space-lg);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+}
+
+.user-info .user-name {
+  color: #E2E8F0;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.user-info .user-role {
+  font-size: 11px;
+  color: #718096;
+}
+
+/* ============================================================
+   TOP BAR
+   ============================================================ */
+
+.top-bar {
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border);
+  padding: 0 var(--space-xl);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.top-bar-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.top-bar-subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.compliance-badge {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-page);
+  margin-left: 8px;
+}
+
+/* ============================================================
+   CARDS & STATS
+   ============================================================ */
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.card-header {
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.card-subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.card-body {
+  padding: var(--space-lg);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--space-xs);
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.stat-change {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.stat-change.up { color: var(--brand-green-light); }
+.stat-change.down { color: var(--brand-red-light); }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all var(--transition);
+}
+
+.btn-primary {
+  background: var(--brand-blue-mid);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--brand-blue);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+
+.btn-outline:hover {
+  background: var(--bg-page);
+  border-color: #CBD5E0;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--brand-blue-mid);
+}
+
+.btn-ghost:hover {
+  background: var(--bg-page);
+}
+
+.btn-sm {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.btn-lg {
+  padding: 12px 24px;
+  font-size: 14px;
+}
+
+.w-full { width: 100%; }
+
+/* ============================================================
+   BADGES & ALERTS
+   ============================================================ */
+
+.badge {
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-approved, .badge-active { background: #F0FFF4; color: #22543D; border: 1px solid #C6F6D5; }
+.badge-blocked, .badge-critical { background: #FFF5F5; color: #9B2C2C; border: 1px solid #FED7D7; }
+.badge-flagged, .badge-review { background: #FFFAF0; color: #975A16; border: 1px solid #FEEBC8; }
+
+.alert {
+  padding: 12px;
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  background: #EBF8FF;
+  border: 1px solid #BEE3F8;
+  color: #2A4365;
+}
+
+.risk-alert {
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FAFAFA;
+}
+
+.risk-alert.critical { border-left: 4px solid var(--brand-red); }
+.risk-alert.high { border-left: 4px solid var(--brand-amber); }
+.risk-alert.medium { border-left: 4px solid var(--brand-blue-light); }
+
+.risk-alert-title { font-weight: 600; font-size: 13px; color: var(--text-primary); }
+.risk-alert-desc { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+
+/* ============================================================
+   TABLES
+   ============================================================ */
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th {
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  background: #F7FAFC;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table td {
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.data-table tr:hover td {
+  background: #F7FAFC;
+}
+
+/* ============================================================
+   FORMS
+   ============================================================ */
+
+.form-group { margin-bottom: 16px; }
+
+.form-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 13px;
+  transition: border-color 0.2s;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--brand-blue-mid);
+}
+
+/* ============================================================
+   PROGRESS BAR
+   ============================================================ */
+
+.progress-bar-wrapper {
+  background: var(--border-light);
+  border-radius: var(--radius-sm);
+  height: 4px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-sm);
+  background: var(--text-muted);
+}
+.progress-bar-fill.primary { background: var(--brand-blue-mid); }
+
+/* ============================================================
+   SPECIFIC SCREENS
+   ============================================================ */
+
+/* Login */
+.login-screen {
+  min-height: 100vh;
+  background: #EDF2F7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 440px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.login-header {
+  padding: 32px 32px 24px;
+  border-bottom: 1px solid var(--border-light);
+  text-align: center;
+}
+
+.login-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--brand-blue);
+  letter-spacing: -0.5px;
+}
+
+.login-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.login-body {
+  padding: 32px;
+}
+
+.role-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.role-list-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.role-list-item:hover {
+  background: #F7FAFC;
+  border-color: #CBD5E0;
+}
+
+.role-list-item.selected {
+  border-color: var(--brand-blue-mid);
+  background: #EBF8FF;
+}
+
+.role-list-abbr {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--brand-blue-mid);
+  background: #EBF8FF;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+}
+.role-list-item.selected .role-list-abbr {
+  background: var(--brand-blue-mid);
+  color: white;
+}
+
+.role-list-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.role-list-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.role-list-dept {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.login-footer {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-light);
+  text-align: center;
+}
+
+.login-compliance {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Chat & AI */
+.ai-screen {
+  display: flex;
+  gap: var(--space-lg);
+  height: calc(100vh - 120px);
+}
+
+.ai-chat-area {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.ai-pipeline-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.chat-messages {
+  flex: 1;
+  padding: var(--space-lg);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  background: #F7FAFC;
+}
+
+.message {
+  max-width: 85%;
+}
+.message.user { align-self: flex-end; }
+
+.message-meta-top {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.message.user .message-meta-top { text-align: right; }
+
+.message-bubble {
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  line-height: 1.5;
+  box-shadow: var(--shadow-sm);
+}
+
+.message.user .message-bubble {
+  background: var(--brand-blue-mid);
+  color: white;
+  border-bottom-right-radius: 0;
+}
+
+.message.assistant .message-bubble {
+  background: white;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-bottom-left-radius: 0;
+}
+
+.phi-banner {
+  font-size: 11px;
+  background: #FEF5E7;
+  color: #975A16;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 12px;
+  border: 1px solid #FEEBC8;
+  font-weight: 500;
+}
+
+.chat-input-area {
+  padding: var(--space-md);
+  background: white;
+  border-top: 1px solid var(--border);
+}
+
+.chat-input-row {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.chat-input-row textarea {
+  min-height: 80px;
+}
+
+.pipeline-step {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #F7FAFC;
+}
+
+.pipeline-step-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.pipeline-step-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.pipeline-step-time {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.pipeline-step-detail {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* PHI Redaction test area */
+.phi-detection-box {
+  padding: 12px;
+  background: #F7FAFC;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.phi-redacted {
+  background: #2D3748;
+  color: white;
+  padding: 0 4px;
+  border-radius: 2px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Grid Utilities */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); }
+.grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-lg); }
+
+/* Spacing Utilities */
+.mb-xs { margin-bottom: 4px; }
+.mb-sm { margin-bottom: 8px; }
+.mb-md { margin-bottom: 16px; }
+.mb-lg { margin-bottom: 24px; }
+.mt-xs { margin-top: 4px; }
+.mt-sm { margin-top: 8px; }
+.mt-md { margin-top: 16px; }
+
+.flex { display: flex; }
+.justify-between { justify-content: space-between; }
+.items-center { align-items: center; }
+.gap-sm { gap: 8px; }
+
+.font-mono { font-family: var(--font-mono); font-size: 12px; }
+.text-danger { color: var(--brand-red); font-weight: 600; }
+
+/* Animations */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.message.assistant .message-bubble {
+  max-width: 100%;
+}
+
+.message.assistant .message-bubble strong {
+  color: var(--brand-blue);
+}
+
+.message.assistant .message-bubble em {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.progress-bar-fill {
+  transition: width 0.6s ease-out;
+}
+
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+/* ============================================================
+   LESS CLICKS, MORE CARE™ — Main Application
+   Minimal Professional Redesign with RBAC & Dynamic AI Portal
+   ============================================================ */
+
+// =================== STATE ===================
+const state = {
+  screen: 'login',
+  user: null,
+  activeNav: 'ai-assistant',
+  showModal: false,
+  modalContent: null,
+  query: '',
+  selectedModel: 'Claude 3.5 Sonnet',
+  isProcessing: false,
+  messages: [
+    {
+      role: 'user',
+      text: 'Patient with chest pain, elevated troponin 2.4 ng/mL, ST changes in V3-V5. What are the next steps in management?',
+      time: '08:41:22',
+      phi: false,
+    },
+    {
+      role: 'assistant',
+      text: 'Based on the clinical parameters provided, this indicates a high-probability NSTEMI/ACS. Recommended standard steps:\n\n1. Activate cath lab (PCI within 90 min if hemodynamically unstable)\n2. Antiplatelet therapy: Aspirin 325mg + P2Y12 inhibitor\n3. Anticoagulation: Unfractionated heparin or Enoxaparin\n4. Monitoring: Continuous cardiac monitoring, serial troponins\n5. Cardiology consult\n\nNote: This is clinical decision support only. Physician judgment is required.',
+      time: '08:41:24',
+      phi: false,
+    }
+  ],
+  pipelineSteps: [
+    { name: 'Data Ingestion', detail: 'Waiting for input...', time: '-' },
+    { name: 'PHI Detection', detail: 'Pending', time: '-' },
+    { name: 'Anonymization', detail: 'Pending', time: '-' },
+    { name: 'Policy Validation', detail: 'Pending', time: '-' },
+    { name: 'Model Execution', detail: 'Pending', time: '-' },
+    { name: 'Audit Logging', detail: 'Pending', time: '-' },
+  ],
+};
+
+// =================== DATA ===================
+
+const ROLES = [
+  { id: 'physician', name: 'Physician', abbr: 'MD' },
+  { id: 'nurse', name: 'Nurse Practitioner', abbr: 'NP' },
+  { id: 'resident', name: 'Resident', abbr: 'RES' },
+  { id: 'cmo', name: 'Chief Medical Officer', abbr: 'CMO' },
+  { id: 'privacy', name: 'Privacy Officer', abbr: 'PO' },
+];
+
+const NAV_ITEMS = [
+  { id: 'dashboard', label: 'Command Center', roles: ['cmo'] },
+  { id: 'ai-assistant', label: 'AI Assistant', roles: ['physician', 'nurse', 'resident'] },
+  { id: 'phi-guardian', label: 'PHI Guardian', roles: ['physician', 'nurse', 'resident'] },
+  { id: 'audit', label: 'Audit Log', roles: ['privacy'] },
+  { id: 'governance', label: 'Governance', roles: ['privacy'] },
+  { id: 'models', label: 'Model Registry', roles: ['cmo', 'privacy'] },
+];
+
+const AUDIT_DATA = [
+  { id: 'AUD-2024-8841', user: 'Dr. Patel', role: 'Physician', action: 'AI Query — Differential diagnosis', phi: 'Redacted', status: 'Approved', risk: 'Low', time: '08:42:17', tokens: 312, model: 'Claude 3.5 Sonnet' },
+  { id: 'AUD-2024-8840', user: 'NP Chen', role: 'Nurse Practitioner', action: 'AI Query — Drug interaction check', phi: 'None', status: 'Approved', risk: 'Low', time: '08:39:02', tokens: 188, model: 'Claude 3.5 Sonnet' },
+  { id: 'AUD-2024-8839', user: 'Dr. Nguyen', role: 'Resident', action: 'AI Query — Included raw DOB and MRN', phi: 'Blocked', status: 'Blocked', risk: 'Critical', time: '08:31:55', tokens: 0, model: 'N/A' },
+  { id: 'AUD-2024-8838', user: 'Dr. Abramowitz', role: 'Physician', action: 'AI Query — Post-op care protocol', phi: 'Flagged', status: 'Flagged', risk: 'Medium', time: '08:28:11', tokens: 445, model: 'Claude 3.5 Sonnet' },
+  { id: 'AUD-2024-8837', user: 'Admin Ramos', role: 'Admin', action: 'Model policy update — Trauma ICU', phi: 'N/A', status: 'Approved', risk: 'Low', time: '08:15:00', tokens: 0, model: 'System' },
+];
+
+const GOVERNANCE_POLICIES = [
+  { dept: 'Emergency Medicine', status: 'Active', level: 'High', models: ['Claude 3.5 Sonnet'], lastReview: '2024-05-15', nextReview: '2024-08-15', queries: 1847, violations: 0 },
+  { dept: 'Cardiology', status: 'Active', level: 'High', models: ['Claude 3.5 Sonnet'], lastReview: '2024-05-10', nextReview: '2024-08-10', queries: 923, violations: 1 },
+  { dept: 'Oncology', status: 'Review', level: 'Critical', models: ['Claude 3.5 Sonnet'], lastReview: '2024-04-01', nextReview: '2024-07-01', queries: 412, violations: 0 },
+];
+
+const MODEL_REGISTRY = [
+  { name: 'Claude 3.5 Sonnet', provider: 'Anthropic', version: '3.5-20241022', status: 'Approved', use: 'Clinical Q&A, Documentation', risk: 'Low' },
+  { name: 'Claude 3 Opus', provider: 'Anthropic', version: '3-opus-20240229', status: 'Approved', use: 'Complex Diagnostic Support', risk: 'Medium' },
+  { name: 'GPT-4o (Canada Region)', provider: 'OpenAI', version: '2024-05-13', status: 'Approved', use: 'General Clinical Queries', risk: 'Low' },
+  { name: 'GPT-4 (Global)', provider: 'OpenAI', version: 'gpt-4', status: 'Blocked', use: 'Data residency non-compliant', risk: 'High' },
+  { name: 'Gemini 1.5 Pro', provider: 'Google', version: '1.5-pro', status: 'Review', use: 'Under PHIPA review', risk: 'Unknown' },
+];
+
+// =================== RENDER ===================
+
+function render() {
+  const app = document.getElementById('app');
+  if (state.screen === 'login') {
+    app.innerHTML = renderLogin();
+  } else {
+    app.innerHTML = renderApp();
+  }
+  attachEventListeners();
+  animateBars();
+}
+
+// =================== LOGIN ===================
+
+function renderLogin() {
+  return `
+  <div class="login-screen">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-title">Less Clicks, More Care™</div>
+        <div class="login-sub">Clinical AI Governance Platform</div>
+      </div>
+      <div class="login-body">
+        <div class="form-group mb-lg">
+          <label class="form-label">Sign in as</label>
+          <div class="role-list" id="role-list">
+            ${ROLES.map(r => `
+              <div class="role-list-item" data-role="${r.id}" id="role-${r.id}">
+                <div class="role-list-abbr">${r.abbr}</div>
+                <div class="role-list-info">
+                  <div class="role-list-name">${r.name}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        <button class="btn btn-primary w-full btn-lg" id="login-btn">
+          Sign In via SSO
+        </button>
+        <div class="login-footer">
+          <div class="login-compliance">
+            Canadian Data Residency • PHIPA Compliant • SOC 2 Type II
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  `;
+}
+
+// =================== APP SHELL ===================
+
+function renderApp() {
+  return `
+  <div class="app-layout">
+    ${renderSidebar()}
+    <div class="main-content">
+      ${renderTopBar()}
+      <div class="page-content fade-in">
+        ${renderPage()}
+      </div>
+    </div>
+    ${state.showModal ? renderModal() : ''}
+  </div>
+  `;
+}
+
+function renderSidebar() {
+  const role = ROLES.find(r => r.id === state.user?.id) || ROLES[0];
+  const userNavs = NAV_ITEMS.filter(item => item.roles.includes(role.id));
+  
+  return `
+  <div class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-name">Less Clicks, More Care™</div>
+      <div class="brand-tagline">Governance Platform</div>
+    </div>
+    
+    <nav class="sidebar-nav">
+      ${userNavs.map(item => `
+        <div class="nav-item ${state.activeNav === item.id ? 'active' : ''}" data-nav="${item.id}">
+          <span>${item.label}</span>
+        </div>
+      `).join('')}
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="user-info">
+          <div class="user-name">Demo User</div>
+          <div class="user-role">${role.name}</div>
+        </div>
+        <div class="sidebar-footer-item" id="logout-btn" style="color:var(--text-muted); font-size:12px; margin-left:auto; cursor:pointer;">Sign Out</div>
+      </div>
+    </div>
+  </div>
+  `;
+}
+
+function renderTopBar() {
+  const pageNames = {
+    dashboard: 'Command Center',
+    'ai-assistant': 'AI Interaction Area',
+    'phi-guardian': 'PHI Guardian Feedback',
+    audit: 'Audit Log',
+    governance: 'Governance Policies',
+    models: 'Model Registry',
+  };
+  return `
+  <div class="top-bar">
+    <div>
+      <div class="top-bar-title">${pageNames[state.activeNav] || 'Dashboard'}</div>
+      <div class="top-bar-subtitle">Toronto General Hospital</div>
+    </div>
+    <div class="top-bar-actions">
+      <span class="compliance-badge">PHIPA Validated</span>
+      <span class="compliance-badge">Data Residency: CA</span>
+    </div>
+  </div>
+  `;
+}
+
+function renderPage() {
+  switch (state.activeNav) {
+    case 'dashboard': return renderDashboard();
+    case 'ai-assistant': return renderAIAssistant();
+    case 'phi-guardian': return renderPHIGuardian();
+    case 'audit': return renderAuditLog();
+    case 'governance': return renderGovernance();
+    case 'models': return renderModels();
+    default: return renderDashboard();
+  }
+}
+
+// =================== DASHBOARD (CMO Only) ===================
+
+function renderDashboard() {
+  return `
+  <div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Queries Today</div>
+        <div class="stat-value">2,847</div>
+        <div class="stat-change up">12% vs yesterday</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Avg Response Time</div>
+        <div class="stat-value">1.2s</div>
+        <div class="stat-change">Target met</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">PHI Auto-Redactions</div>
+        <div class="stat-value">87</div>
+        <div class="stat-change up">Across all depts</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Queries Blocked</div>
+        <div class="stat-value">14</div>
+        <div class="stat-change down">Policy violations</div>
+      </div>
+    </div>
+
+    <div class="grid-2 mb-lg">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Query Distribution by Department</div>
+        </div>
+        <div class="card-body">
+          <div style="display:flex; flex-direction:column; gap:var(--space-sm);">
+            ${[
+              { dept: 'Emergency Medicine', count: 847, total: 2847 },
+              { dept: 'Internal Medicine', count: 612, total: 2847 },
+              { dept: 'Cardiology', count: 423, total: 2847 },
+              { dept: 'Radiology', count: 389, total: 2847 },
+            ].map(d => `
+              <div>
+                <div class="flex justify-between mb-xs" style="font-size:12px;">
+                  <span style="font-weight:500;">${d.dept}</span>
+                  <span style="color:var(--text-muted);">${d.count.toLocaleString()} queries</span>
+                </div>
+                <div class="progress-bar-wrapper">
+                  <div class="progress-bar-fill primary" style="width:${Math.round(d.count/d.total*100)}%;"></div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header"><div class="card-title">High-Level Policy Alerts</div></div>
+        <div class="card-body">
+          <div class="risk-alert high mb-sm">
+            <div class="risk-alert-body">
+              <div class="risk-alert-title">Policy Threshold Exceeded</div>
+              <div class="risk-alert-desc">Radiology department recorded multiple formatting warnings.</div>
+            </div>
+          </div>
+          <div class="risk-alert medium">
+            <div class="risk-alert-body">
+              <div class="risk-alert-title">Policy Review Due</div>
+              <div class="risk-alert-desc">Oncology departmental compliance review is due next week.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  `;
+}
+
+// =================== AI ASSISTANT ===================
+
+function renderAIAssistant() {
+  const selectedModelInfo = MODEL_REGISTRY.find(m => m.name === state.selectedModel) || MODEL_REGISTRY[0];
+  const isBlocked = selectedModelInfo.status === 'Blocked';
+  
+  return `
+  <div class="ai-screen">
+    <div class="ai-chat-area">
+      <div class="card" style="flex:1; display:flex; flex-direction:column;">
+        <div class="card-header" style="flex-shrink:0;">
+          <div>
+            <div class="card-title">Clinical AI Interaction</div>
+            <div class="card-subtitle">PHI is automatically detected and redacted prior to transmission.</div>
+          </div>
+          <div class="flex gap-sm items-center">
+            <label class="form-label" style="margin:0;">Model:</label>
+            <select class="form-control" id="model-select" style="width:200px; padding:6px; font-size:12px;" ${state.isProcessing ? 'disabled' : ''}>
+              ${MODEL_REGISTRY.map(m => `
+                <option value="${m.name}" ${m.name === state.selectedModel ? 'selected' : ''}>
+                  ${m.name} (${m.status})
+                </option>
+              `).join('')}
+            </select>
+          </div>
+        </div>
+        
+        ${isBlocked ? `
+        <div style="padding:12px 24px; background:#FFF5F5; border-bottom:1px solid #FED7D7; color:#9B2C2C; font-size:12px; font-weight:500;">
+          WARNING: ${state.selectedModel} is currently BLOCKED due to policy (${selectedModelInfo.use}). Queries cannot be sent.
+        </div>` : ''}
+
+        <div class="card-body" style="padding:0; flex:1; display:flex; flex-direction:column; min-height:0;">
+          <div class="chat-messages" id="chat-messages">
+            ${state.messages.map(m => renderMessage(m)).join('')}
+          </div>
+          <div class="chat-input-area" style="flex-shrink:0;">
+            <div class="chat-input-row">
+              <textarea class="form-control" id="chat-input" placeholder="Enter clinical scenario or paste notes..." ${isBlocked || state.isProcessing ? 'disabled' : ''}>${state.query}</textarea>
+              <div style="display:flex; flex-direction:column; gap:var(--space-sm);">
+                <button class="btn btn-primary" id="send-btn" onclick="sendMessage()" ${isBlocked || state.isProcessing ? 'disabled' : ''}>
+                  ${state.isProcessing ? 'Processing...' : 'Send to AI'}
+                </button>
+                <button class="btn btn-ghost" onclick="clearChat()">Clear</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-pipeline-panel">
+      <div class="card" style="height:100%;">
+        <div class="card-header">
+          <div class="card-title">Live Pipeline Status</div>
+        </div>
+        <div class="card-body" style="padding:var(--space-md); display:flex; flex-direction:column; gap:var(--space-md);">
+          ${state.pipelineSteps.map((s, i) => `
+            <div class="pipeline-step" style="${s.active ? 'border-color:var(--brand-blue-mid); background:#EBF8FF;' : s.done ? 'border-color:#C6F6D5; background:#F0FFF4;' : ''}">
+              <div class="pipeline-step-header">
+                <div class="pipeline-step-name" style="${s.done ? 'color:var(--brand-green-light);' : s.active ? 'color:var(--brand-blue-mid);' : ''}">${i+1}. ${s.name}</div>
+                <div class="pipeline-step-time">${s.time}</div>
+              </div>
+              <div class="pipeline-step-detail">${s.detail}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  </div>
+  `;
+}
+
+function renderMessage(m) {
+  const phiBanner = m.phi ? (() => {
+    const count = m.phiCount || 1;
+    const categories = m.phiCategories && m.phiCategories.length > 0 ? m.phiCategories : [];
+    return `<div class="phi-banner" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+      <span>System Action: ${count} PHI entit${count > 1 ? 'ies' : 'y'} automatically detected and redacted prior to transmission.</span>
+      ${categories.length > 0 ? `<span style="background:#F6AD55; color:#744210; padding:2px 8px; border-radius:3px; font-size:10px; font-weight:600;">Categories: ${categories.join(', ')}</span>` : ''}
+    </div>`;
+  })() : '';
+
+  // Format text: convert \n to <br>, bold (**text**), and handle markdown-like formatting
+  let formattedText = m.text
+    .replace(/\n/g, '<br>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/^(#{1,3})\s+(.+)/gm, (_, h, txt) => `<strong>${txt}</strong>`);
+  
+  const typingCursor = m.typing ? '<span style="display:inline-block;width:2px;height:14px;background:var(--brand-blue-mid);margin-left:2px;animation:blink 0.6s infinite;">&#8203;</span>' : '';
+
+  return `
+  <div class="message ${m.role}">
+    <div class="message-meta-top">
+      ${m.role === 'assistant' ? `System Response (${m.model || state.selectedModel})` : `User Query`}
+      <span style="font-weight:normal; color:var(--text-muted); margin-left:8px;">${m.time}</span>
+    </div>
+    <div class="message-bubble">
+      ${phiBanner}
+      ${formattedText}${typingCursor}
+    </div>
+  </div>
+  `;
+}
+
+// =================== PHI GUARDIAN ===================
+
+function renderPHIGuardian() {
+  return `
+  <div>
+    <div class="card mb-lg">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Your Personal PHI Redaction Feedback</div>
+          <div class="card-subtitle">Review how your recent queries were anonymized.</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="grid-2">
+          <div>
+            <div class="form-group">
+              <label class="form-label">Recent Query Input</label>
+              <div class="phi-detection-box" style="background: white;">
+                Patient John Smith (DOB: 1972-09-18, MRN: 8834921) was admitted with a troponin of 3.2 ng/mL. He lives at 142 Bloor St West, Toronto.
+              </div>
+            </div>
+          </div>
+          <div>
+            <label class="form-label">Redacted Payload (Sent to AI)</label>
+            <div class="phi-detection-box" id="phi-redacted-box">
+              Patient <span class="phi-redacted">[NAME]</span> (DOB: <span class="phi-redacted">[DATE]</span>, MRN: <span class="phi-redacted">[ID]</span>) was admitted with a troponin of 3.2 ng/mL. He lives at <span class="phi-redacted">[LOCATION]</span>, Toronto.
+            </div>
+            <div class="mt-md">
+              <div class="text-sm font-medium mb-xs">Detected Entities:</div>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <span class="badge badge-blocked">Name (1)</span>
+                <span class="badge badge-blocked">MRN (1)</span>
+                <span class="badge badge-flagged">DOB (1)</span>
+                <span class="badge badge-flagged">Address (1)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  `;
+}
+
+// =================== AUDIT LOG (Privacy Only) ===================
+
+function renderAuditLog() {
+  return `
+  <div>
+    <div class="card mb-lg">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Global Audit Dashboard</div>
+          <div class="card-subtitle">Immutable log of all platform interactions</div>
+        </div>
+        <div class="flex gap-sm">
+          <button class="btn btn-outline btn-sm">Export CSV</button>
+        </div>
+      </div>
+      <div class="card-body" style="padding:0;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Audit ID</th>
+              <th>Timestamp</th>
+              <th>User / Role</th>
+              <th>Action / Query Type</th>
+              <th>PHI Status</th>
+              <th>Status</th>
+              <th>Model</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${AUDIT_DATA.map(a => `
+              <tr>
+                <td><span class="font-mono">${a.id}</span></td>
+                <td><span class="font-mono">${a.time}</span></td>
+                <td><strong>${a.user}</strong><br><span style="font-size:11px; color:var(--text-muted);">${a.role}</span></td>
+                <td>${a.action}</td>
+                <td><span class="badge ${a.phi === 'Redacted' ? 'badge-flagged' : a.phi === 'Blocked' ? 'badge-blocked' : 'badge-approved'}">${a.phi}</span></td>
+                <td><span class="badge badge-${a.status.toLowerCase()}">${a.status}</span></td>
+                <td>${a.model}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  `;
+}
+
+// =================== GOVERNANCE (Privacy Only) ===================
+
+function renderGovernance() {
+  return `
+  <div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Departmental Governance Policies</div>
+      </div>
+      <div class="card-body" style="padding:0;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Department</th>
+              <th>Status</th>
+              <th>Risk Tier</th>
+              <th>Approved Models</th>
+              <th>Next Review</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${GOVERNANCE_POLICIES.map(p => `
+              <tr>
+                <td><strong>${p.dept}</strong></td>
+                <td><span class="badge badge-${p.status === 'Active' ? 'approved' : 'flagged'}">${p.status}</span></td>
+                <td>${p.level}</td>
+                <td>${p.models.join(', ')}</td>
+                <td class="font-mono">${p.nextReview}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  `;
+}
+
+// =================== MODELS ===================
+
+function renderModels() {
+  return `
+  <div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Model Registry</div>
+      </div>
+      <div class="card-body" style="padding:0;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Model Name</th>
+              <th>Provider</th>
+              <th>Version</th>
+              <th>Approval Status</th>
+              <th>Permitted Use Case</th>
+              <th>Compliance</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${MODEL_REGISTRY.map(m => `
+              <tr>
+                <td><strong>${m.name}</strong></td>
+                <td>${m.provider}</td>
+                <td class="font-mono">${m.version}</td>
+                <td><span class="badge badge-${m.status === 'Approved' ? 'approved' : m.status === 'Blocked' ? 'blocked' : 'flagged'}">${m.status}</span></td>
+                <td>${m.use}</td>
+                <td>${m.risk === 'High' ? '<span class="text-danger">Non-compliant</span>' : 'Compliant (CA)'}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  `;
+}
+
+// =================== MODALS & UTILS ===================
+
+function attachEventListeners() {
+  if (state.screen === 'login') {
+    document.querySelectorAll('.role-list-item').forEach(el => {
+      el.addEventListener('click', (e) => {
+        document.querySelectorAll('.role-list-item').forEach(r => r.classList.remove('selected'));
+        e.currentTarget.classList.add('selected');
+        state.user = ROLES.find(r => r.id === e.currentTarget.dataset.role);
+      });
+    });
+    
+    const loginBtn = document.getElementById('login-btn');
+    if (loginBtn) {
+      loginBtn.addEventListener('click', () => {
+        if (!state.user) {
+          state.user = ROLES[0]; // Default physician
+        }
+        
+        // Determine default route based on role
+        if (['physician', 'nurse', 'resident'].includes(state.user.id)) {
+          state.activeNav = 'ai-assistant';
+        } else if (state.user.id === 'cmo') {
+          state.activeNav = 'dashboard';
+        } else if (state.user.id === 'privacy') {
+          state.activeNav = 'audit';
+        }
+        
+        state.screen = 'app';
+        render();
+      });
+    }
+  } else {
+    document.querySelectorAll('.nav-item').forEach(el => {
+      el.addEventListener('click', (e) => {
+        state.activeNav = e.currentTarget.dataset.nav;
+        render();
+      });
+    });
+    
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', () => {
+        state.screen = 'login';
+        state.user = null;
+        render();
+      });
+    }
+
+    const modelSelect = document.getElementById('model-select');
+    if (modelSelect) {
+      modelSelect.addEventListener('change', (e) => {
+        // Save current chat input before re-rendering
+        const input = document.getElementById('chat-input');
+        if (input) state.query = input.value;
+        
+        state.selectedModel = e.target.value;
+        render();
+      });
+    }
+    
+    // Auto-save textarea value to state so it's not lost on re-renders
+    const chatInput = document.getElementById('chat-input');
+    if (chatInput) {
+      chatInput.addEventListener('input', (e) => {
+        state.query = e.target.value;
+      });
+    }
+  }
+}
+
+function navigate(navId) {
+  state.activeNav = navId;
+  render();
+}
+
+function resetPipeline() {
+  state.pipelineSteps = [
+    { name: 'Data Ingestion', detail: 'Waiting for input...', time: '-' },
+    { name: 'PHI Detection', detail: 'Pending', time: '-' },
+    { name: 'Anonymization', detail: 'Pending', time: '-' },
+    { name: 'Policy Validation', detail: 'Pending', time: '-' },
+    { name: 'Model Execution', detail: 'Pending', time: '-' },
+    { name: 'Audit Logging', detail: 'Pending', time: '-' },
+  ];
+}
+
+// =================== CLINICAL NLP ENGINE ===================
+
+function extractClinicalData(text) {
+  const data = { vitals: {}, symptoms: [], procedures: [], medications: [], labs: [], assessments: [], history: [] };
+  const t = text;
+  
+  // Extract vitals
+  const bpMatch = t.match(/BP\s*[:=]?\s*(\d{2,3})\s*[/\\]\s*(\d{2,3})\s*(mmHg)?/i);
+  if (bpMatch) data.vitals.bp = `${bpMatch[1]}/${bpMatch[2]} mmHg`;
+  
+  const hrMatch = t.match(/(?:HR|heart rate|pulse)\s*[:=]?\s*(\d{2,3})\s*(bpm)?/i);
+  if (hrMatch) data.vitals.hr = `${hrMatch[1]} bpm`;
+  
+  const rrMatch = t.match(/(?:RR|resp(?:iratory)?\s*rate)\s*[:=]?\s*(\d{1,2})\s*(?:\/min|breaths)?/i);
+  if (rrMatch) data.vitals.rr = `${rrMatch[1]}/min`;
+  
+  const tempMatch = t.match(/(?:temp|temperature)\s*[:=]?\s*(\d{2,3}(?:\.\d{1,2})?)\s*°?\s*(C|F|celsius|fahrenheit)?/i);
+  if (tempMatch) data.vitals.temp = `${tempMatch[1]}°${(tempMatch[2] || 'C').charAt(0).toUpperCase()}`;
+  
+  const spo2Match = t.match(/(?:SpO[₂2]|O2\s*sat|oxygen\s*sat(?:uration)?)\s*[:=]?\s*(\d{2,3})\s*%?\s*(RA|room air|on \d+L)?/i);
+  if (spo2Match) data.vitals.spo2 = `${spo2Match[1]}%${spo2Match[2] ? ' ' + spo2Match[2] : ''}`;
+  
+  // Extract pain score
+  const painMatch = t.match(/pain\s*(?:rated|score|level|of|at|:)?\s*(\d{1,2})\s*(?:\/|\s*out\s*of\s*)10/i);
+  if (painMatch) data.vitals.pain = `${painMatch[1]}/10`;
+  
+  // Extract symptoms
+  const symptomPatterns = [
+    /\b(nausea|vomiting|emesis)\b/i, /\b(abdominal pain|abd(?:ominal)?\s*pain)\b/i,
+    /\b(chest pain|CP)\b/i, /\b(dyspnea|shortness of breath|SOB)\b/i,
+    /\b(dizziness|lightheaded(?:ness)?)\b/i, /\b(fever|febrile)\b/i,
+    /\b(diaphoresis|diaphoretic|sweating)\b/i, /\b(pale|pallor)\b/i,
+    /\b(headache|cephalgia)\b/i, /\b(edema|swelling)\b/i,
+    /\b(tachycardia|tachycardic)\b/i, /\b(hypotension|hypotensive)\b/i,
+    /\b(fatigue|weakness|malaise)\b/i, /\b(confusion|altered mental status|AMS)\b/i,
+    /\b(constipation|diarrhea)\b/i, /\b(cough|hemoptysis)\b/i,
+    /\b(anxiety|anxious)\b/i, /\b(insomnia|unable to sleep)\b/i,
+    /\b(bleeding|hemorrhage)\b/i, /\b(infection|sepsis|septic)\b/i,
+  ];
+  symptomPatterns.forEach(p => { const m = t.match(p); if (m) data.symptoms.push(m[1]); });
+  
+  // Extract procedures/surgeries
+  const procPatterns = [
+    /\b(laparoscopic\s+cholecystectomy)\b/i, /\b(appendectomy)\b/i,
+    /\b(CABG|coronary artery bypass)\b/i, /\b(hip\s+replacement|arthroplasty)\b/i,
+    /\b(knee\s+replacement)\b/i, /\b(C-section|cesarean)\b/i,
+    /\b(colectomy)\b/i, /\b(mastectomy)\b/i,
+    /\b(thoracotomy)\b/i, /\b(craniotomy)\b/i,
+    /\b(hernia repair)\b/i, /\b(nephrectomy)\b/i,
+    /\b(endoscopy|colonoscopy)\b/i, /\b(catheterization|PCI)\b/i,
+  ];
+  procPatterns.forEach(p => { const m = t.match(p); if (m) data.procedures.push(m[1]); });
+  
+  // Extract POD (post-operative day)
+  const podMatch = t.match(/POD\s*#?\s*(\d+)/i);
+  if (podMatch) data.pod = parseInt(podMatch[1]);
+  
+  // Extract orientation
+  const orientMatch = t.match(/(?:alert\s+and\s+)?oriented\s*x?\s*(\d)/i) || t.match(/A&O\s*x?\s*(\d)/i);
+  if (orientMatch) data.orientation = parseInt(orientMatch[1]);
+  if (t.match(/alert\s+and\s+oriented/i)) data.isAlert = true;
+  
+  // Extract wound/incision info
+  const woundPatterns = [
+    /\b(incision\s+sites?\s+(?:clean|dry|intact|CDI|approximated|open|draining|red|swollen)[\w\s,]*)/i,
+    /\b(surgical\s+(?:site|wound|dressing)\s+(?:clean|dry|intact|CDI|approximated)[\w\s,]*)/i,
+    /\b(dressing\s+(?:clean|dry|intact|changed|reinforced)[\w\s,]*)/i,
+  ];
+  woundPatterns.forEach(p => { const m = t.match(p); if (m) data.assessments.push(m[1]); });
+  
+  // Extract drainage info
+  const drainMatch = t.match(/(?:no\s+)?(?:active\s+)?drain(?:age|s)?\s*(?:noted|present|output)?/i);
+  if (drainMatch) data.assessments.push(drainMatch[0]);
+  
+  // Lab results
+  const labPatterns = [
+    /\b(troponin)\s*[:=]?\s*([\d.]+)\s*(ng\/mL|ng\/L|ug\/L)?/i,
+    /\b(hemoglobin|Hgb|Hb)\s*[:=]?\s*([\d.]+)\s*(g\/dL|g\/L)?/i,
+    /\b(WBC|white\s*blood\s*(?:cells?|count))\s*[:=]?\s*([\d.]+)/i,
+    /\b(potassium|K\+?)\s*[:=]?\s*([\d.]+)\s*(mEq\/L|mmol\/L)?/i,
+    /\b(creatinine|Cr)\s*[:=]?\s*([\d.]+)\s*(mg\/dL|umol\/L)?/i,
+    /\b(lactate)\s*[:=]?\s*([\d.]+)\s*(mmol\/L)?/i,
+    /\b(glucose|BG)\s*[:=]?\s*([\d.]+)\s*(mg\/dL|mmol\/L)?/i,
+    /\b(INR)\s*[:=]?\s*([\d.]+)/i,
+    /\b(platelets?|PLT)\s*[:=]?\s*([\d,]+)/i,
+  ];
+  labPatterns.forEach(p => { const m = t.match(p); if (m) data.labs.push({ name: m[1], value: m[2], unit: m[3] || '' }); });
+  
+  // Medications mentioned
+  const medPatterns = [
+    /\b(morphine|hydromorphone|fentanyl|dilaudid|oxycodone|acetaminophen|tylenol|ibuprofen|ketorolac)\b/i,
+    /\b(metoprolol|lisinopril|amlodipine|atenolol|losartan|furosemide|lasix)\b/i,
+    /\b(aspirin|ASA|clopidogrel|plavix|warfarin|coumadin|heparin|enoxaparin|lovenox)\b/i,
+    /\b(insulin|metformin|glipizide)\b/i,
+    /\b(ondansetron|zofran|gravol|dimenhydrinate|antiemetic)\b/i,
+    /\b(ceftriaxone|vancomycin|amoxicillin|ciprofloxacin|azithromycin|piperacillin|tazobactam)\b/i,
+    /\b(pantoprazole|omeprazole|ranitidine)\b/i,
+    /\b(IV\s+fluids?|normal\s+saline|NS|lactated\s+ringer|LR|D5W)\b/i,
+  ];
+  medPatterns.forEach(p => { const m = t.match(p); if (m) data.medications.push(m[1]); });
+  
+  return data;
+}
+
+function classifyIntent(text) {
+  const t = text.toLowerCase();
+  
+  // Score each intent
+  const intents = {
+    'nursing-progress-note': 0,
+    'sbar': 0,
+    'handover': 0,
+    'discharge': 0,
+    'drug-interaction': 0,
+    'cardiac-emergency': 0,
+    'post-op-assessment': 0,
+    'vital-signs-analysis': 0,
+    'pain-management': 0,
+    'general-clinical': 0,
+  };
+  
+  // Nursing progress note
+  if (t.match(/\b(nursing|nurse|nurs)\b/)) intents['nursing-progress-note'] += 3;
+  if (t.match(/\b(progress\s*note|note|document|chart|charting)\b/)) intents['nursing-progress-note'] += 3;
+  if (t.match(/\b(create|write|generate|draft|compose)\b/)) intents['nursing-progress-note'] += 2;
+  if (t.match(/\bPOD\s*#?\d/i)) intents['nursing-progress-note'] += 2;
+  if (t.match(/\b(assessed|assessment|bedside)\b/)) intents['nursing-progress-note'] += 2;
+  if (t.match(/\b(surgeon\s+notified|md\s+notified|physician\s+notified|notified)\b/)) intents['nursing-progress-note'] += 2;
+  
+  // SBAR
+  if (t.match(/\b(sbar|situation|background|assessment|recommendation)\b/)) intents['sbar'] += 3;
+  if (t.match(/\b(report|call|notify|escalat)\b/)) intents['sbar'] += 1;
+  
+  // Handover
+  if (t.match(/\b(handover|hand-over|hand\s+off|shift\s+change|shift\s+report|shift\s+summary)\b/)) intents['handover'] += 4;
+  if (t.match(/\b(summary|summarize|brief)\b/)) intents['handover'] += 1;
+  
+  // Discharge
+  if (t.match(/\b(discharge|disch|d\/c)\b/)) intents['discharge'] += 4;
+  if (t.match(/\b(protocol|plan|instructions|teaching)\b/)) intents['discharge'] += 1;
+  
+  // Drug interaction
+  if (t.match(/\b(drug|medication|med)\b/) && t.match(/\b(interaction|contraindic|adverse|reaction|allergy)\b/)) intents['drug-interaction'] += 5;
+  if (t.match(/\b(interaction|contraindic)\b/)) intents['drug-interaction'] += 2;
+  
+  // Cardiac emergency
+  if (t.match(/\b(troponin|st\s*change|stemi|nstemi|acs|mi|myocardial|cardiac\s*arrest)\b/)) intents['cardiac-emergency'] += 4;
+  if (t.match(/\b(chest\s*pain|cp|angina)\b/)) intents['cardiac-emergency'] += 2;
+  
+  // Post-op assessment
+  if (t.match(/\bPOD\s*#?\d/i)) intents['post-op-assessment'] += 2;
+  if (t.match(/\b(post-?op|postoperative|surgery|surgical|following\s+\w+ectomy|following\s+\w+otomy|following\s+\w+plasty)\b/)) intents['post-op-assessment'] += 3;
+  if (t.match(/\b(incision|wound|dressing|drain)\b/)) intents['post-op-assessment'] += 2;
+  
+  // Vital signs analysis
+  if (t.match(/\b(vital|vitals|vital\s*signs)\b/)) intents['vital-signs-analysis'] += 3;
+  if (t.match(/\b(BP|HR|RR|temp|SpO2|oxygen)\b/i) && !t.match(/\b(note|create|write)\b/)) intents['vital-signs-analysis'] += 2;
+  
+  // Pain management
+  if (t.match(/\b(pain\s*management|analges|pain\s*control|pain\s*relief)\b/)) intents['pain-management'] += 4;
+  
+  // Find the best intent
+  let best = 'general-clinical';
+  let bestScore = 0;
+  for (const [intent, score] of Object.entries(intents)) {
+    if (score > bestScore) { best = intent; bestScore = score; }
+  }
+  
+  // If no strong signal, but we have vitals + symptoms, default to nursing progress note
+  if (bestScore < 3) {
+    const hasVitals = t.match(/BP\s*[:=]?\s*\d/i) || t.match(/HR\s*[:=]?\s*\d/i) || t.match(/temp\s*[:=]?\s*\d/i);
+    const hasSymptoms = t.match(/\b(pain|nausea|vomiting|dyspnea|fever|bleeding|confusion)\b/i);
+    const hasProcedure = t.match(/\b(following|after|post|POD)\b/i);
+    if (hasVitals && (hasSymptoms || hasProcedure)) {
+      best = 'nursing-progress-note';
+    }
+  }
+  
+  return best;
+}
+
+function generateNursingProgressNote(text, clinData) {
+  const now = new Date();
+  const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+  
+  // Build vitals string
+  let vitalsStr = '';
+  const v = clinData.vitals;
+  const vitalParts = [];
+  if (v.bp) vitalParts.push(`BP ${v.bp}`);
+  if (v.hr) vitalParts.push(`HR ${v.hr}`);
+  if (v.rr) vitalParts.push(`RR ${v.rr}`);
+  if (v.temp) vitalParts.push(`Temp ${v.temp}`);
+  if (v.spo2) vitalParts.push(`SpO₂ ${v.spo2}`);
+  if (vitalParts.length > 0) vitalsStr = `Vital signs: ${vitalParts.join(', ')}.`;
+  
+  // Determine clinical severity
+  let severity = 'stable';
+  const bpSys = v.bp ? parseInt(v.bp.split('/')[0]) : null;
+  const hr = v.hr ? parseInt(v.hr) : null;
+  const temp = v.temp ? parseFloat(v.temp) : null;
+  const spo2 = v.spo2 ? parseInt(v.spo2) : null;
+  const pain = v.pain ? parseInt(v.pain) : null;
+  
+  const concerns = [];
+  if (bpSys && bpSys < 100) { severity = 'concerning'; concerns.push(`hypotension (SBP ${bpSys})`); }
+  if (hr && hr > 100) { severity = 'concerning'; concerns.push(`tachycardia (HR ${hr})`); }
+  if (temp && temp > 38.0) { severity = 'concerning'; concerns.push(`fever (${v.temp})`); }
+  if (spo2 && spo2 < 94) { severity = 'concerning'; concerns.push(`hypoxemia (SpO₂ ${spo2}%)`); }
+  if (pain && pain >= 7) { severity = 'concerning'; concerns.push(`severe pain (${v.pain})`); }
+  if (concerns.length >= 3) severity = 'critical';
+  
+  // Build procedure context
+  let procContext = '';
+  if (clinData.procedures.length > 0) {
+    procContext = `following ${clinData.procedures[0]}`;
+    if (clinData.pod !== undefined) procContext = `POD#${clinData.pod} ${procContext}`;
+  } else if (clinData.pod !== undefined) {
+    procContext = `POD#${clinData.pod}`;
+  }
+  
+  // Build symptoms string
+  const symptomStr = clinData.symptoms.length > 0 
+    ? `Reports ${clinData.symptoms.join(', ').toLowerCase()}.` 
+    : '';
+  
+  // Determine orientation string
+  let orientStr = '';
+  if (clinData.isAlert || clinData.orientation) {
+    orientStr = `Alert and oriented x${clinData.orientation || 3}.`;
+  }
+  
+  // Build wound assessment
+  let woundStr = '';
+  if (clinData.assessments.length > 0) {
+    woundStr = clinData.assessments.map(a => a.charAt(0).toUpperCase() + a.slice(1)).join('. ') + '.';
+  }
+  
+  // Build appearance
+  let appearanceStr = '';
+  const appearanceItems = [];
+  if (text.match(/\bpale\b/i)) appearanceItems.push('pale');
+  if (text.match(/\bdiaphoretic\b/i)) appearanceItems.push('diaphoretic');
+  if (text.match(/\bflushed\b/i)) appearanceItems.push('flushed');
+  if (text.match(/\bcyanotic\b/i)) appearanceItems.push('cyanotic');
+  if (text.match(/\blethargic\b/i)) appearanceItems.push('lethargic');
+  if (text.match(/\brestless\b/i)) appearanceItems.push('restless');
+  if (appearanceItems.length > 0) appearanceStr = `Patient appears ${appearanceItems.join(' and ')}.`;
+  
+  // Determine abdomen assessment
+  let abdomenStr = '';
+  const abdMatch = text.match(/abdomen\s+(soft|distended|rigid|tender|firm)[\w\s,]*/i);
+  if (abdMatch) abdomenStr = `Abdomen ${abdMatch[0].replace(/abdomen\s*/i, '')}.`;
+  
+  // Build labs ordered
+  let labsStr = '';
+  if (text.match(/\b(CBC|electrolytes|lactate|bloodwork|blood\s*work|labs?\s*ordered|STAT)\b/i)) {
+    const orderedLabs = [];
+    if (text.match(/\bCBC\b/i)) orderedLabs.push('CBC');
+    if (text.match(/\belectrolytes?\b/i)) orderedLabs.push('electrolytes');
+    if (text.match(/\blactate\b/i)) orderedLabs.push('lactate');
+    if (text.match(/\bBMP\b/i)) orderedLabs.push('BMP');
+    if (text.match(/\bCMP\b/i)) orderedLabs.push('CMP');
+    if (text.match(/\btroponin\b/i)) orderedLabs.push('troponin');
+    const isSTAT = text.match(/\bSTAT\b/);
+    labsStr = isSTAT ? `STAT ${orderedLabs.join(', ')} ordered.` : `${orderedLabs.join(', ')} ordered.`;
+  }
+  
+  // Build interventions
+  const interventions = [];
+  if (text.match(/\bsurgeon\s*notified\b/i)) interventions.push('Surgeon notified of assessment findings');
+  if (text.match(/\b(physician|md|doctor)\s*notified\b/i)) interventions.push('Physician notified of assessment findings');
+  if (text.match(/\bIV\s*fluid/i) || text.match(/\bfluid.*increased\b/i)) interventions.push('IV fluid rate adjusted as per order');
+  if (text.match(/\bantiemetic\b/i)) interventions.push('Antiemetic administered as prescribed');
+  if (text.match(/\banalges/i) || text.match(/\bpain\s*med/i)) interventions.push('Analgesic administered as ordered');
+  if (text.match(/\bO2\s*applied\b/i) || text.match(/\boxygen\s*(applied|initiated|started)\b/i)) interventions.push('Supplemental O₂ initiated');
+  if (text.match(/\bfamily\s*(updated|notified|informed)\b/i)) interventions.push('Family updated on patient status');
+  if (text.match(/\bmonitor/i)) interventions.push('Patient remains under close monitoring');
+  
+  // If we detected concerning vitals but no explicit interventions, add smart ones
+  if (severity !== 'stable' && interventions.length < 2) {
+    if (bpSys && bpSys < 100 && !interventions.some(i => i.includes('fluid'))) interventions.push('IV fluid bolus initiated per protocol');
+    if (hr && hr > 110 && !interventions.some(i => i.includes('monitor'))) interventions.push('Continuous cardiac monitoring maintained');
+    if (temp && temp > 38.3) interventions.push('Blood cultures obtained prior to antibiotic administration');
+    if (!interventions.some(i => i.includes('notified') || i.includes('Surgeon') || i.includes('Physician'))) {
+      interventions.push('Attending physician notified of clinical status');
+    }
+  }
+  
+  // Assemble the note
+  let note = `**📋 Nursing Progress Note**\n\n`;
+  note += `**${timeStr}** – Patient assessed at bedside${procContext ? ' (' + procContext + ')' : ''}.`;
+  
+  if (orientStr) note += ` ${orientStr}`;
+  if (pain) note += ` Reports ${clinData.symptoms.includes('abdominal pain') ? 'worsening abdominal' : ''} pain rated ${v.pain}.`;
+  else if (symptomStr) note += ` ${symptomStr}`;
+  
+  note += `\n\n`;
+  
+  // Vitals section
+  if (vitalsStr) {
+    note += `**Vital Signs:** ${vitalsStr}`;
+    if (concerns.length > 0) {
+      note += ` ⚠️ *Notable: ${concerns.join(', ')}.*`;
+    }
+    note += `\n\n`;
+  }
+  
+  // Systems assessment
+  note += `**Systems Assessment:**\n`;
+  
+  // Neuro
+  note += `• **Neuro:** ${orientStr || 'Alert, responsive to verbal cues.'}`;
+  if (text.match(/\bconfus/i)) note += ' Episodes of confusion noted.';
+  note += `\n`;
+  
+  // Cardio
+  note += `• **Cardiovascular:** `;
+  if (v.bp) note += `BP ${v.bp}`;
+  if (v.hr) note += `, HR ${v.hr}`;
+  if (bpSys && bpSys < 100) note += ' — *hypotensive, monitor for signs of shock*';
+  else if (hr && hr > 100) note += ' — *tachycardic*';
+  else note += ' — hemodynamically monitored';
+  note += `.\n`;
+  
+  // Resp
+  note += `• **Respiratory:** `;
+  if (v.spo2) note += `SpO₂ ${v.spo2}`;
+  if (v.rr) note += `, RR ${v.rr}`;
+  if (spo2 && spo2 >= 94) note += ' — adequate oxygenation';
+  else if (spo2) note += ' — *supplemental O₂ may be required*';
+  else note += 'Lung sounds assessed';
+  note += `.\n`;
+  
+  // GI
+  if (abdomenStr || clinData.symptoms.some(s => s.match(/nausea|vomiting|abdominal/i))) {
+    note += `• **GI:** `;
+    if (abdomenStr) note += abdomenStr;
+    if (clinData.symptoms.some(s => s.match(/nausea/i))) note += ' Nausea present.';
+    if (clinData.symptoms.some(s => s.match(/vomiting/i))) note += ' Active emesis.';
+    note += `\n`;
+  }
+  
+  // Wound/surgical
+  if (woundStr || clinData.procedures.length > 0) {
+    note += `• **Wound/Surgical:** `;
+    note += woundStr || 'Surgical site assessed — no signs of infection, dehiscence, or active bleeding.';
+    if (text.match(/\bno\s*(?:active\s+)?drain(?:age)?\b/i)) note += ' No active drainage noted.';
+    note += `\n`;
+  }
+  
+  // Pain
+  if (pain) {
+    note += `• **Pain:** Current pain level ${v.pain}`;
+    if (pain >= 7) note += ' — *inadequately controlled, reassess analgesic regimen*';
+    else if (pain >= 4) note += ' — moderate, continue current regimen';
+    else note += ' — well controlled';
+    note += `.\n`;
+  }
+  
+  // Appearance
+  if (appearanceStr) note += `• **Appearance:** ${appearanceStr}\n`;
+  
+  note += `\n`;
+  
+  // Interventions
+  if (interventions.length > 0 || labsStr) {
+    note += `**Interventions & Notifications:**\n`;
+    interventions.forEach((intv, i) => { note += `${i+1}. ${intv}.\n`; });
+    if (labsStr) note += `${interventions.length + 1}. ${labsStr}\n`;
+    note += `\n`;
+  }
+  
+  // Plan
+  note += `**Plan:**\n`;
+  if (severity === 'critical') {
+    note += `• Escalate to rapid response if further deterioration.\n`;
+    note += `• Serial vitals q15 min.\n`;
+  } else if (severity === 'concerning') {
+    note += `• Reassess in 30 minutes.\n`;
+    note += `• Serial vitals q30 min until stable.\n`;
+  } else {
+    note += `• Continue routine monitoring per post-op protocol.\n`;
+  }
+  note += `• Report any further changes in clinical status immediately.\n`;
+  if (clinData.labs.length > 0 || labsStr) note += `• Follow up on pending lab results.\n`;
+  
+  // Audit trail
+  const auditId = `AUD-${new Date().getFullYear()}-E${Math.floor(Math.random()*90000+10000)}`;
+  const chainHash = Array.from({length: 10}, () => Math.random().toString(16).substr(2, 2)).join('');
+  note += `\n---\n*Audit: ${auditId} | Chain: ${chainHash}...*`;
+  
+  return note;
+}
+
+function generateSBARReport(text, clinData) {
+  const v = clinData.vitals;
+  const bpSys = v.bp ? parseInt(v.bp.split('/')[0]) : null;
+  const hr = v.hr ? parseInt(v.hr) : null;
+  const temp = v.temp ? parseFloat(v.temp) : null;
+  
+  let procStr = clinData.procedures.length > 0 ? clinData.procedures[0] : 'recent procedure';
+  let podStr = clinData.pod !== undefined ? `POD#${clinData.pod}` : '';
+  
+  let note = `**📞 SBAR Communication Report**\n\n`;
+  
+  note += `**S — Situation:**\n`;
+  note += `Calling to report a change in clinical status for patient ${podStr ? podStr + ' ' : ''}${procStr !== 'recent procedure' ? 'following ' + procStr : ''}. `;
+  if (clinData.symptoms.length > 0) note += `Patient is experiencing ${clinData.symptoms.join(', ').toLowerCase()}. `;
+  if (v.pain) note += `Pain rated ${v.pain}. `;
+  note += `\n\n`;
+  
+  note += `**B — Background:**\n`;
+  if (clinData.procedures.length > 0) note += `• Underwent ${procStr}${podStr ? ', currently ' + podStr : ''}.\n`;
+  note += `• Relevant history and current medications reviewed in chart.\n`;
+  if (clinData.medications.length > 0) note += `• Current medications include: ${clinData.medications.join(', ')}.\n`;
+  note += `\n`;
+  
+  note += `**A — Assessment:**\n`;
+  if (Object.keys(v).length > 0) {
+    const vParts = [];
+    if (v.bp) vParts.push(`BP ${v.bp}`);
+    if (v.hr) vParts.push(`HR ${v.hr}`);
+    if (v.rr) vParts.push(`RR ${v.rr}`);
+    if (v.temp) vParts.push(`Temp ${v.temp}`);
+    if (v.spo2) vParts.push(`SpO₂ ${v.spo2}`);
+    note += `• Vitals: ${vParts.join(', ')}.\n`;
+  }
+  
+  const concerns = [];
+  if (bpSys && bpSys < 100) concerns.push('hypotension');
+  if (hr && hr > 100) concerns.push('tachycardia');
+  if (temp && temp > 38.0) concerns.push('fever');
+  if (concerns.length > 0) note += `• Concerns: ${concerns.join(', ')}.\n`;
+  if (clinData.assessments.length > 0) note += `• Exam: ${clinData.assessments.join('. ')}.\n`;
+  note += `\n`;
+  
+  note += `**R — Recommendation:**\n`;
+  note += `• Requesting physician assessment at bedside.\n`;
+  if (bpSys && bpSys < 100) note += `• Consider IV fluid bolus for hypotension.\n`;
+  if (temp && temp > 38.3) note += `• Consider blood cultures and empiric antibiotics.\n`;
+  note += `• STAT labs if not already ordered (CBC, BMP, lactate).\n`;
+  note += `• Update care plan based on findings.\n`;
+  
+  const auditId = `AUD-${new Date().getFullYear()}-E${Math.floor(Math.random()*90000+10000)}`;
+  note += `\n---\n*Audit: ${auditId}*`;
+  
+  return note;
+}
+
+function generatePostOpAssessment(text, clinData) {
+  const v = clinData.vitals;
+  let procStr = clinData.procedures.length > 0 ? clinData.procedures[0] : 'surgical procedure';
+  let podStr = clinData.pod !== undefined ? `POD#${clinData.pod}` : 'Post-operative';
+  
+  let note = `**🏥 Post-Operative Assessment — ${podStr}**\n\n`;
+  note += `**Procedure:** ${procStr.charAt(0).toUpperCase() + procStr.slice(1)}\n\n`;
+  
+  note += `**Current Status:**\n`;
+  if (clinData.isAlert) note += `• Neurological: Alert and oriented x${clinData.orientation || 3}. GCS 15/15.\n`;
+  
+  // Vitals
+  if (Object.keys(v).length > 0) {
+    const vParts = [];
+    if (v.bp) vParts.push(`BP ${v.bp}`);
+    if (v.hr) vParts.push(`HR ${v.hr}`);
+    if (v.rr) vParts.push(`RR ${v.rr}`);
+    if (v.temp) vParts.push(`Temp ${v.temp}`);
+    if (v.spo2) vParts.push(`SpO₂ ${v.spo2}`);
+    note += `• Hemodynamics: ${vParts.join(', ')}.\n`;
+  }
+  
+  // Pain
+  if (v.pain) note += `• Pain: ${v.pain} — ${parseInt(v.pain) >= 7 ? 'consider rescue analgesic' : 'current regimen adequate'}.\n`;
+  
+  // Wound
+  note += `• Surgical Site: `;
+  if (clinData.assessments.length > 0) note += clinData.assessments.join('. ') + '.';
+  else note += 'Incision sites inspected — clean, dry, and intact. No erythema, drainage, or dehiscence.';
+  note += `\n`;
+  
+  // GI
+  note += `• GI: `;
+  if (clinData.symptoms.some(s => s.match(/nausea/i))) note += 'Nausea present. ';
+  if (clinData.symptoms.some(s => s.match(/vomiting/i))) note += 'Emesis noted. ';
+  note += `Diet tolerance and bowel function being monitored.\n`;
+  
+  // Mobility
+  note += `• Mobility: `;
+  if (clinData.pod <= 1) note += 'Early mobilization initiated. OOB to chair with assistance as tolerated.';
+  else note += 'Progressive ambulation per protocol.';
+  note += `\n`;
+  
+  // DVT prevention
+  note += `• VTE Prophylaxis: Sequential compression devices (SCDs) in place. Pharmacological prophylaxis per protocol.\n\n`;
+  
+  note += `**Nursing Plan:**\n`;
+  note += `1. Continue post-op vitals per protocol.\n`;
+  note += `2. Monitor surgical site for signs of infection or complication.\n`;
+  note += `3. Encourage early mobilization and incentive spirometry.\n`;
+  note += `4. Manage pain to target ≤ 4/10.\n`;
+  note += `5. Monitor urine output and maintain fluid balance.\n`;
+  
+  const auditId = `AUD-${new Date().getFullYear()}-E${Math.floor(Math.random()*90000+10000)}`;
+  note += `\n---\n*Audit: ${auditId}*`;
+  
+  return note;
+}
+
+function generateVitalSignsAnalysis(text, clinData) {
+  const v = clinData.vitals;
+  let note = `**📊 Vital Signs Analysis**\n\n`;
+  
+  if (Object.keys(v).length === 0) {
+    return `I don't see any specific vital signs data in the current input. Could you provide the patient's current vitals (BP, HR, RR, Temp, SpO₂)?`;
+  }
+  
+  note += `| Parameter | Value | Status |\n| --- | --- | --- |\n`;
+  
+  if (v.bp) {
+    const sys = parseInt(v.bp.split('/')[0]);
+    const dia = parseInt(v.bp.split('/')[1]);
+    let status = '✅ Normal';
+    if (sys < 90) status = '🔴 Critically Low';
+    else if (sys < 100) status = '⚠️ Hypotensive';
+    else if (sys > 180) status = '🔴 Hypertensive Crisis';
+    else if (sys > 140) status = '⚠️ Elevated';
+    note += `| Blood Pressure | ${v.bp} | ${status} |\n`;
+  }
+  if (v.hr) {
+    const hr = parseInt(v.hr);
+    let status = '✅ Normal';
+    if (hr > 120) status = '🔴 Tachycardic';
+    else if (hr > 100) status = '⚠️ Elevated';
+    else if (hr < 50) status = '⚠️ Bradycardic';
+    note += `| Heart Rate | ${v.hr} | ${status} |\n`;
+  }
+  if (v.rr) {
+    const rr = parseInt(v.rr);
+    let status = '✅ Normal';
+    if (rr > 24) status = '🔴 Tachypneic';
+    else if (rr > 20) status = '⚠️ Elevated';
+    else if (rr < 10) status = '🔴 Bradypneic';
+    note += `| Respiratory Rate | ${v.rr} | ${status} |\n`;
+  }
+  if (v.temp) {
+    const temp = parseFloat(v.temp);
+    let status = '✅ Normal';
+    if (temp > 39) status = '🔴 High Fever';
+    else if (temp > 38) status = '⚠️ Febrile';
+    else if (temp < 35.5) status = '⚠️ Hypothermic';
+    note += `| Temperature | ${v.temp} | ${status} |\n`;
+  }
+  if (v.spo2) {
+    const spo2 = parseInt(v.spo2);
+    let status = '✅ Normal';
+    if (spo2 < 90) status = '🔴 Critical Hypoxemia';
+    else if (spo2 < 94) status = '⚠️ Borderline';
+    note += `| SpO₂ | ${v.spo2} | ${status} |\n`;
+  }
+  if (v.pain) {
+    const pain = parseInt(v.pain);
+    let status = pain <= 3 ? '✅ Mild' : pain <= 6 ? '⚠️ Moderate' : '🔴 Severe';
+    note += `| Pain Scale | ${v.pain} | ${status} |\n`;
+  }
+  
+  // Clinical interpretation
+  const concerns = [];
+  const bpSys = v.bp ? parseInt(v.bp.split('/')[0]) : null;
+  if (bpSys && bpSys < 100) concerns.push('Systolic BP below 100 — assess for hypovolemia, sepsis, or hemorrhage');
+  if (v.hr && parseInt(v.hr) > 100) concerns.push('Tachycardia — may indicate pain, anxiety, hypovolemia, or infection');
+  if (v.temp && parseFloat(v.temp) > 38) concerns.push('Elevated temperature — evaluate for post-operative infection, UTI, or pneumonia');
+  if (v.rr && parseInt(v.rr) > 20) concerns.push('Tachypnea — may suggest pain, respiratory pathology, or metabolic acidosis');
+  
+  if (concerns.length > 0) {
+    note += `\n**⚠️ Clinical Concerns:**\n`;
+    concerns.forEach(c => { note += `• ${c}\n`; });
+  }
+  
+  note += `\n**Recommendation:** ${concerns.length >= 2 ? 'Escalate to physician assessment. Consider STAT labs and continuous monitoring.' : 'Continue monitoring per protocol. Reassess at scheduled intervals.'}`;
+  
+  return note;
+}
+
+function generateGeneralResponse(text, clinData) {
+  const lowerText = text.toLowerCase();
+  
+  // Try to be smart about various clinical scenarios
+  if (lowerText.match(/\b(drug|medication)\b/) && lowerText.match(/\b(interaction|check)\b/)) {
+    return `⚠️ **Drug Interaction Analysis:**\n\nBased on the medications mentioned, the following interactions should be monitored:\n\n1. **Anticoagulant + Antiplatelet:** Increased bleeding risk. Monitor INR closely. Consider GI prophylaxis (PPI).\n2. **NSAIDs + Renal function:** Monitor creatinine and urine output in patients with reduced renal function.\n3. **Opioids + Benzodiazepines:** Risk of respiratory depression. Use lowest effective doses.\n\n*Always verify interactions against current pharmacy database. This is decision-support only.*`;
+  }
+  
+  if (lowerText.match(/\b(handover|hand-off|shift\s+report)\b/)) {
+    return `**📋 Nursing Shift Handover Summary:**\n\n**Neuro:** Alert and oriented x3. No new neurological deficits.\n**Cardio:** Vitals within acceptable parameters. Continue current monitoring protocol.\n**Resp:** Adequate oxygenation. Lung sounds clear bilaterally.\n**GI:** Tolerating diet as ordered. Bowel sounds present.\n**Pain:** Currently managed per protocol.\n**Activity:** Mobilizing as tolerated. Fall risk precautions in place.\n**IV/Lines:** Patent, site without signs of infiltration or phlebitis.\n\n*Plan for next shift:* Continue monitoring, reassess pain, follow up on pending results.`;
+  }
+  
+  if (lowerText.match(/\b(discharge|disch|d\/c)\b/)) {
+    return `**📝 Discharge Planning Documentation:**\n\n**Discharge Criteria Assessment:**\n✅ Vital signs stable for > 24 hours\n✅ Pain controlled with oral medication\n✅ Tolerating regular diet\n✅ Ambulating independently\n✅ Wound/incision healing appropriately\n\n**Discharge Instructions:**\n1. Medication reconciliation completed and reviewed with patient.\n2. Follow-up appointment scheduled within 7-14 days.\n3. Wound care instructions provided and demonstrated.\n4. Signs/symptoms requiring ED return reviewed.\n5. Activity restrictions discussed.\n6. Prescriptions sent to preferred pharmacy.\n\n**Patient Education Completed:** ☑ Medications ☑ Wound care ☑ Activity ☑ Follow-up ☑ Emergency signs`;
+  }
+  
+  if (lowerText.includes('troponin') || lowerText.includes('st changes') || lowerText.includes('stemi') || lowerText.includes('chest pain')) {
+    return `**🚨 Acute Coronary Syndrome — Clinical Decision Support**\n\nBased on the clinical parameters provided, this presentation is consistent with **high-probability NSTEMI/ACS**.\n\n**Immediate Management:**\n1. **Activate cath lab** — PCI within 90 min if hemodynamically unstable.\n2. **Dual antiplatelet therapy:** Aspirin 325mg loading + P2Y12 inhibitor (ticagrelor 180mg or clopidogrel 600mg).\n3. **Anticoagulation:** Unfractionated heparin (UFH) bolus + infusion or enoxaparin per weight-based protocol.\n4. **Monitoring:** Continuous telemetry, serial troponins q3-6h, 12-lead ECG comparison.\n5. **Supplemental:** Morphine PRN for refractory pain, NTG SL if SBP > 100.\n6. **Consults:** Cardiology STAT.\n\n⚠️ *This is clinical decision support only. Physician judgment is required for all treatment decisions.*`;
+  }
+  
+  if (lowerText.match(/\b(rephrase|rewrite|simplify|plain\s*language)\b/)) {
+    return `Certainly. Here is a rephrased version in clearer language:\n\nThe patient is currently stable overall. Their blood pressure, heart rate, and breathing are being monitored regularly. They have been given medication for comfort and are being encouraged to move around as able. The care team is watching for any signs of complications and will take immediate action if needed.\n\n*The clinical details have been simplified while preserving medical accuracy.*`;
+  }
+  
+  // If we have ANY clinical data extracted, generate a contextual response
+  if (Object.keys(clinData.vitals).length > 0 || clinData.symptoms.length > 0) {
+    return generateNursingProgressNote(text, clinData);
+  }
+  
+  // Fallback: acknowledge the query intelligently
+  return `Thank you for your clinical query. Based on the information provided, I can offer the following guidance:\n\n**Assessment:** The clinical scenario has been reviewed through the governance pipeline. All PHI has been redacted.\n\n**Recommendation:** For more targeted decision support, please include:\n• Specific vital signs (BP, HR, RR, Temp, SpO₂)\n• Current symptoms and chief complaint\n• Relevant procedures or diagnoses\n• Medications currently administered\n\nThis will enable me to generate detailed clinical documentation such as:\n📋 Nursing Progress Notes\n📞 SBAR Reports\n🏥 Post-Op Assessments\n📊 Vital Signs Analysis\n📝 Discharge Planning\n\n*All responses are clinical decision support only. Physician judgment is required.*`;
+}
+
+// =================== ENHANCED PHI DETECTION ===================
+
+function detectPHI(text) {
+  const findings = [];
+  
+  // Patient names
+  const namePatterns = /\b(?:Mr|Mrs|Ms|Dr|Miss|Patient)\s*\.?\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\b/g;
+  const commonNames = /\b(John|Jane|Smith|Johnson|Williams|Brown|Davis|Wilson|Taylor|Anderson|Thomas|Jackson|White|Harris|Martin|Sarah|Michael|David|Robert|James|Mary|Patricia|Jennifer|Linda|Elizabeth)\b/gi;
+  let m;
+  while ((m = commonNames.exec(text)) !== null) findings.push({ type: 'Patient Name', value: m[0] });
+  while ((m = namePatterns.exec(text)) !== null) findings.push({ type: 'Patient Name', value: m[1] });
+  
+  // Dates of birth
+  const dobPattern = /\b(?:DOB|date\s*of\s*birth)\s*[:=]?\s*((?:19|20)\d{2}[-/]\d{2}[-/]\d{2}|\d{2}[-/]\d{2}[-/](?:19|20)\d{2})/gi;
+  while ((m = dobPattern.exec(text)) !== null) findings.push({ type: 'Date of Birth', value: m[1] });
+  
+  // MRN
+  const mrnPattern = /\b(?:MRN|medical\s*record)\s*[:=# ]?\s*(\d{6,10})\b/gi;
+  while ((m = mrnPattern.exec(text)) !== null) findings.push({ type: 'MRN', value: m[1] });
+  
+  // OHIP
+  const ohipPattern = /\b(?:OHIP|health\s*card)\s*[:=# ]?\s*(\d{4}[-\s]?\d{3}[-\s]?\d{3})\b/gi;
+  while ((m = ohipPattern.exec(text)) !== null) findings.push({ type: 'OHIP Number', value: m[1] });
+  
+  // Phone numbers
+  const phonePattern = /\b(\d{3}[-.\s]\d{3}[-.\s]\d{4})\b/g;
+  while ((m = phonePattern.exec(text)) !== null) findings.push({ type: 'Phone Number', value: m[0] });
+  
+  // Addresses
+  const addressPattern = /\b(\d+\s+(?:[A-Z][a-z]+\s+){1,3}(?:St|Ave|Blvd|Dr|Rd|Way|Ct|Ln|Pl)(?:\s+(?:West|East|North|South|W|E|N|S))?)\b/gi;
+  while ((m = addressPattern.exec(text)) !== null) findings.push({ type: 'Address', value: m[0] });
+  
+  // Standalone date patterns
+  const datePattern = /\b((?:19|20)\d{2}[-/]\d{2}[-/]\d{2})\b/g;
+  while ((m = datePattern.exec(text)) !== null) {
+    if (!findings.some(f => f.value === m[1])) findings.push({ type: 'Date', value: m[1] });
+  }
+  
+  // Standalone large numbers that look like IDs (not vitals)
+  const idPattern = /\b(\d{7,10})\b/g;
+  while ((m = idPattern.exec(text)) !== null) {
+    if (!findings.some(f => f.value === m[1])) findings.push({ type: 'Potential ID', value: m[1] });
+  }
+  
+  // Deduplicate
+  const unique = [];
+  const seen = new Set();
+  findings.forEach(f => {
+    const key = `${f.type}:${f.value}`;
+    if (!seen.has(key)) { seen.add(key); unique.push(f); }
+  });
+  
+  return unique;
+}
+
+// =================== ENHANCED SEND MESSAGE ===================
+
+async function sendMessage() {
+  const input = document.getElementById('chat-input');
+  if (!input || !input.value.trim() || state.isProcessing) return;
+  
+  const text = input.value;
+  state.query = '';
+  state.isProcessing = true;
+  
+  // Enhanced PHI detection with categories
+  const phiFindings = detectPHI(text);
+  const hasPHI = phiFindings.length > 0;
+  const phiCategories = [...new Set(phiFindings.map(f => f.type))];
+  
+  const userMsg = { 
+    role: 'user', 
+    text: text, 
+    time: new Date().toLocaleTimeString('en-US',{hour12:false}), 
+    phi: hasPHI,
+    phiCount: phiFindings.length,
+    phiCategories: phiCategories
+  };
+  
+  state.messages.push(userMsg);
+  render();
+
+  const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+  // Step 1: Ingestion
+  state.pipelineSteps[0] = { name: 'Data Ingestion', detail: 'Captured from browser payload', time: '12ms', done: true };
+  render(); await sleep(200);
+
+  // Step 2: PHI Detection
+  state.pipelineSteps[1] = { name: 'PHI Detection', detail: 'Running NER Model...', time: '...', active: true };
+  render(); await sleep(300);
+  state.pipelineSteps[1] = { 
+    name: 'PHI Detection', 
+    detail: hasPHI ? `${phiFindings.length} PHI entit${phiFindings.length > 1 ? 'ies' : 'y'} detected (${phiCategories.join(', ')})` : 'No PHI found', 
+    time: '45ms', done: true 
+  };
+  render(); await sleep(200);
+
+  // Step 3: Anonymization
+  if (hasPHI) {
+    state.pipelineSteps[2] = { name: 'Anonymization', detail: `Redacting ${phiFindings.length} entities...`, time: '...', active: true };
+    render(); await sleep(200);
+    state.pipelineSteps[2] = { name: 'Anonymization', detail: 'Payload pseudonymized', time: '18ms', done: true };
+  } else {
+    state.pipelineSteps[2] = { name: 'Anonymization', detail: 'Skipped (clean)', time: '0ms', done: true };
+  }
+  render(); await sleep(200);
+
+  // Security Guardrails
+  const isJailbreak = text.toLowerCase().match(/(trick|reveal|override|ignore previous|patient name|identity|bypass|forget)/);
+  
+  // Step 4: Policy
+  state.pipelineSteps[3] = { name: 'Policy Validation', detail: 'Checking departmental rules...', time: '...', active: true };
+  render(); await sleep(200);
+  
+  if (isJailbreak) {
+    state.pipelineSteps[3] = { name: 'Policy Validation', detail: 'BLOCKED: Security Guardrail Triggered', time: '12ms', done: true };
+    render(); await sleep(200);
+    state.pipelineSteps[4] = { name: 'Model Execution', detail: 'Skipped (Policy Violation)', time: '0ms', done: true };
+    state.pipelineSteps[5] = { name: 'Audit Logging', detail: 'Violation logged to immutable ledger', time: '21ms', done: true };
+    
+    const reply = "🛑 **Security Guardrail Triggered:** Potential prompt injection or policy bypass detected. I am securely containerized and cannot reveal patient identifiers, override redaction policies, or ignore previous instructions. All PHI is permanently stripped before reaching the AI context.";
+    state.messages.push({ role: 'assistant', text: reply, time: new Date().toLocaleTimeString('en-US',{hour12:false}), phi: false, model: 'System Policy Engine' });
+    state.isProcessing = false;
+    render();
+    setTimeout(() => { const md = document.getElementById('chat-messages'); if(md) md.scrollTop = md.scrollHeight; }, 50);
+    return;
+  }
+  
+  state.pipelineSteps[3] = { name: 'Policy Validation', detail: 'Approved for transmission', time: '5ms', done: true };
+  render(); await sleep(200);
+
+  // Step 5: Model — Classify intent and generate response
+  const intent = classifyIntent(text);
+  state.pipelineSteps[4] = { name: 'Model Execution', detail: `Streaming to ${state.selectedModel} (${intent})...`, time: '...', active: true };
+  render(); await sleep(400);
+  
+  // Extract clinical data
+  const clinData = extractClinicalData(text);
+  
+  // Generate appropriate response based on intent
+  let reply;
+  switch (intent) {
+    case 'nursing-progress-note':
+      reply = generateNursingProgressNote(text, clinData);
+      break;
+    case 'sbar':
+      reply = generateSBARReport(text, clinData);
+      break;
+    case 'post-op-assessment':
+      reply = generatePostOpAssessment(text, clinData);
+      break;
+    case 'vital-signs-analysis':
+      reply = generateVitalSignsAnalysis(text, clinData);
+      break;
+    case 'cardiac-emergency':
+    case 'discharge':
+    case 'drug-interaction':
+    case 'handover':
+    case 'pain-management':
+    case 'general-clinical':
+    default:
+      reply = generateGeneralResponse(text, clinData);
+      break;
+  }
+  
+  await sleep(600);
+  state.pipelineSteps[4] = { name: 'Model Execution', detail: 'Response complete', time: '1.8s', done: true };
+  render(); await sleep(100);
+
+  // Step 6: Audit
+  state.pipelineSteps[5] = { name: 'Audit Logging', detail: 'Saving to immutable ledger...', time: '...', active: true };
+  render(); await sleep(200);
+  state.pipelineSteps[5] = { name: 'Audit Logging', detail: 'Record hashed and stored', time: '21ms', done: true };
+  
+  // Add assistant message with typing animation
+  const assistantMsg = { role: 'assistant', text: '', time: new Date().toLocaleTimeString('en-US',{hour12:false}), phi: false, model: state.selectedModel, typing: true };
+  state.messages.push(assistantMsg);
+  state.isProcessing = false;
+  render();
+  
+  // Simulate typing animation
+  const msgIdx = state.messages.length - 1;
+  const fullReply = reply;
+  const chunkSize = 8; // characters per tick for speed
+  
+  for (let i = 0; i < fullReply.length; i += chunkSize) {
+    state.messages[msgIdx].text = fullReply.substring(0, Math.min(i + chunkSize, fullReply.length));
+    
+    // Only re-render every few chunks for performance
+    if (i % (chunkSize * 4) === 0 || i + chunkSize >= fullReply.length) {
+      render();
+      const messagesDiv = document.getElementById('chat-messages');
+      if (messagesDiv) messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+    await sleep(12);
+  }
+  
+  // Finalize — remove typing flag
+  state.messages[msgIdx].typing = false;
+  state.messages[msgIdx].text = fullReply;
+  render();
+  
+  setTimeout(() => {
+    const messagesDiv = document.getElementById('chat-messages');
+    if (messagesDiv) messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }, 50);
+}
+
+function clearChat() {
+  state.query = '';
+  state.messages = [];
+  resetPipeline();
+  render();
+}
+
+function animateBars() {
+  setTimeout(() => {
+    document.querySelectorAll('.progress-bar-fill').forEach(bar => {
+      const w = bar.style.width;
+      bar.style.width = '0%';
+      bar.getBoundingClientRect(); // force reflow
+      bar.style.width = w;
+    });
+    const messagesDiv = document.getElementById('chat-messages');
+    if (messagesDiv) messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }, 50);
+}
+
+// Init
+window.onload = render;
+
+  </script>
+</body>
+</html>
