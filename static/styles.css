@@ -368,6 +368,8 @@ h1, h2, h3, h4, h5, h6, .brand-name, .login-title, .stat-value {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
 }
 
 .card-title {
@@ -774,6 +776,7 @@ h1, h2, h3, h4, h5, h6, .brand-name, .login-title, .stat-value {
   display: flex;
   gap: var(--space-xl);
   height: calc(100vh - 140px);
+  flex-wrap: wrap;
 }
 
 .ai-chat-area {
@@ -871,6 +874,8 @@ h1, h2, h3, h4, h5, h6, .brand-name, .login-title, .stat-value {
 }
 
 .chat-input-row textarea {
+  flex: 1;
+  width: 100%;
   min-height: 56px;
   border-radius: 28px;
   padding: 16px 24px;
