@@ -1060,13 +1060,15 @@ MONGO_URI = os.environ.get('MONGO_URI', 'mongodb://localhost:27017/')
 mongo_client = None
 db = None
 audit_collection = None
+traffic_collection = None
 
 def init_db():
-    global mongo_client, db, audit_collection
+    global mongo_client, db, audit_collection, traffic_collection
     try:
         mongo_client = MongoClient(MONGO_URI)
         db = mongo_client['lcmc']
         audit_collection = db['audit_log']
+        traffic_collection = db['traffic_logs']
         # Create an index on timestamp for fast sorting
         audit_collection.create_index('timestamp', name='timestamp_idx')
         print("  [DB] Successfully connected to MongoDB")
@@ -1103,6 +1105,8 @@ def log_audit(entry):
         'tokens_in': entry.get('tokens_in', 0),
         'tokens_out': entry.get('tokens_out', 0),
         'status': entry.get('status', 'Approved'),
+        'input_text': entry.get('input_text', ''),
+        'output_text': entry.get('output_text', ''),
     }
     
     if audit_collection is not None:
@@ -1151,6 +1155,26 @@ def get_stats():
 
 
 # ===================== API ROUTES =====================
+
+@app.before_request
+def log_traffic():
+    if traffic_collection is not None:
+        try:
+            payload = None
+            if request.is_json:
+                payload = request.get_json(silent=True)
+            
+            traffic_doc = {
+                'timestamp': datetime.now().isoformat(),
+                'ip_address': request.remote_addr,
+                'method': request.method,
+                'path': request.path,
+                'user_agent': request.headers.get('User-Agent', ''),
+                'payload': json.dumps(payload) if payload else ''
+            }
+            traffic_collection.insert_one(traffic_doc)
+        except Exception as e:
+            print(f"  [Traffic Monitor] Error logging traffic: {e}")
 
 @app.route('/')
 def serve_index():

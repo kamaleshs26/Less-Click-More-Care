@@ -311,6 +311,12 @@ function renderAIAssistant() {
             ` : ''}
           </div>
           <div class="chat-input-area" style="flex-shrink:0;">
+            <div style="display:flex; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
+              <span style="font-size:11px; color:var(--text-muted); padding-top:4px;">Quick Scenarios:</span>
+              <button class="btn btn-ghost scenario-btn" style="font-size:11px; padding:2px 8px;" data-scenario="Patient John Doe (DOB 1980-05-15) presenting with severe chest pain radiating to left arm. Vitals: BP 150/90, HR 110, RR 22, Temp 37.1, SpO2 96%. EKG shows ST elevation in leads II, III, aVF. Currently taking aspirin and lisinopril. What is the immediate management plan?">NSTEMI / ACS</button>
+              <button class="btn btn-ghost scenario-btn" style="font-size:11px; padding:2px 8px;" data-scenario="Post-op day 1 for 65yo F following lap chole. Patient Mary Smith. Vitals: BP 130/80, HR 85, RR 16, Temp 37.8, SpO2 98%. Pain 4/10 on PCA. Incision sites clean and dry. Tolerating sips of clear fluids. Please generate a post-op assessment.">Post-Op Assessment</button>
+              <button class="btn btn-ghost scenario-btn" style="font-size:11px; padding:2px 8px;" data-scenario="Generate a discharge plan for patient David Johnson (MRN 87654321), admitted for community-acquired pneumonia. Completed 5 days of IV ceftriaxone. Afebrile for 48 hours. Discharging home on oral azithromycin for 3 more days. Follow-up with PCP Dr. Clark in 1 week.">Discharge Planning</button>
+            </div>
             <div class="chat-input-row">
               <textarea class="form-control" id="chat-input" placeholder="Enter clinical scenario or paste notes..." ${isBlocked || state.isProcessing ? 'disabled' : ''}>${state.query}</textarea>
               <div style="display:flex; flex-direction:column; gap:var(--space-sm);">
@@ -713,6 +719,16 @@ function attachEventListeners() {
 
     const clearBtn = document.getElementById('clear-btn');
     if (clearBtn) clearBtn.addEventListener('click', clearChat);
+
+    document.querySelectorAll('.scenario-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const chatInput = document.getElementById('chat-input');
+        if (chatInput) {
+          chatInput.value = e.currentTarget.dataset.scenario;
+          state.query = chatInput.value;
+        }
+      });
+    });
 
     const refreshAuditBtn = document.getElementById('refresh-audit-btn');
     if (refreshAuditBtn) refreshAuditBtn.addEventListener('click', () => { fetchAudit(); });
