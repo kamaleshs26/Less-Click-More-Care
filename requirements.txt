@@ -6,3 +6,6 @@ anthropic==0.26.0
 google-generativeai==0.5.4
 groq==0.8.0
 dnspython==2.6.1
+Flask-Talisman
+Flask-Limiter
+Flask-Cors

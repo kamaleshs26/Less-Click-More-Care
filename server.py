@@ -4,6 +4,10 @@
 # ================================================================
 
 from flask import Flask, request, jsonify, send_from_directory
+from flask_talisman import Talisman
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+from flask_cors import CORS
 import re, hashlib, json, uuid, os
 from datetime import datetime
 from collections import defaultdict
@@ -175,6 +179,40 @@ You are speaking with a healthcare professional. Respond in a professional clini
 
 
 app = Flask(__name__, static_folder='static', static_url_path='')
+
+# ===================== CYBERSECURITY HARDENING =====================
+# 1. CORS: Allow Render domains and local dev
+CORS(app, resources={r"/api/*": {"origins": [r"https://.*\.onrender\.com", "http://localhost:3456", "http://127.0.0.1:3456"]}})
+
+# 2. Talisman: Security headers (HSTS, CSP, X-Frame-Options)
+csp = {
+    'default-src': [
+        '\'self\'',
+        '*.onrender.com'
+    ],
+    'style-src': [
+        '\'self\'',
+        '\'unsafe-inline\'',
+        'https://fonts.googleapis.com'
+    ],
+    'font-src': [
+        '\'self\'',
+        'https://fonts.gstatic.com'
+    ],
+    'script-src': [
+        '\'self\'',
+        '\'unsafe-inline\''
+    ]
+}
+talisman = Talisman(app, content_security_policy=csp)
+
+# 3. Limiter: Rate limiting to prevent DoS attacks
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    default_limits=["1000 per day", "100 per hour"],
+    storage_uri="memory://"
+)
 
 # ===================== MODEL REGISTRY =====================
 
@@ -1182,6 +1220,7 @@ def serve_index():
 
 
 @app.route('/api/query', methods=['POST'])
+@limiter.limit("50 per minute")
 def api_query():
     check_and_init_clients()
     data = request.json or {}
